@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Heart, Activity, Stethoscope, Brain, ArrowRight, TrendingUp, Shield, BarChart3 } from 'lucide-react';
+import { Heart, Activity, Stethoscope, Brain, ArrowRight, TrendingUp, Shield, BarChart3, Image } from 'lucide-react';
 
 const features = [
   {
@@ -34,6 +34,15 @@ const features = [
     color: "from-red-500 to-pink-600",
     bgColor: "from-red-50 to-pink-50"
   },
+  {
+  title: "Pneumonia Detection",
+  description: "Detect pneumonia using chest X-ray image analysis through deep learning.",
+  link: "/predict/pneumonia",
+  icon: <Image className="w-8 h-8" />, // Make sure to import `Image` from lucide-react or replace with your own icon
+  color: "from-blue-500 to-cyan-600",
+  bgColor: "from-blue-50 to-cyan-50"
+},
+
 ];
 
 const PredictHub = () => {

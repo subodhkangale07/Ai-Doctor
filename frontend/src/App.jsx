@@ -6,6 +6,7 @@ import DiseasePredict from './pages/SymptomDiseasePredictor';
 import HeartPredict from './pages/HeartDiseasePredictor';
 import PredictHub from './pages/PredictHub';
 import HomePage from './pages/Home';
+import PneumoniaPredict from './pages/PneumoniaPredict';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/predict/diabetes" element={<DiabetesPredict />} />
         <Route path="/predict/disease" element={<DiseasePredict />} />
         <Route path="/predict/heart" element={<HeartPredict />} />
+        <Route path="/predict/pneumonia" element={<PneumoniaPredict />} />
 
       </Routes>
 
