@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { predictDiabetes } from "../api";
 
 const DiabetesPredict = () => {
   const [formData, setFormData] = useState({
@@ -18,34 +19,28 @@ const DiabetesPredict = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setResult(null);
 
-    try {
-      const payload = Object.fromEntries(
-        Object.entries(formData).map(([key, value]) => [key, parseFloat(value)])
-      );
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setResult(null);
 
-      // Mock API call for demonstration
-      const mockResponse = {
-        prediction: "Low Risk",
-        probability_diabetic: 0.23,
-        decision_score: -0.847
-      };
-      
-      // Simulate API delay
-      setTimeout(() => {
-        setResult(mockResponse);
-        setLoading(false);
-      }, 2000);
-    } catch (error) {
-      console.error("Prediction Error:", error);
-      setResult({ error: "Something went wrong during prediction." });
-      setLoading(false);
-    }
-  };
+  try {
+    const payload = Object.fromEntries(
+      Object.entries(formData).map(([key, value]) => [key, parseFloat(value)])
+    );
+
+    const response = await predictDiabetes(payload);
+
+    // Expected backend response: { prediction, probability_diabetic, decision_score }
+    setResult(response);
+  } catch (error) {
+    setResult({ error: "Something went wrong during prediction." });
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   // 🔧 Helper to show example values
   const getExampleValue = (key) => {
@@ -75,7 +70,7 @@ const DiabetesPredict = () => {
 
         {/* Form Card */}
         <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl border border-blue-200/50 p-8 md:p-12">
-          <div onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-8">
             {/* Input Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {Object.entries(formData).map(([key, value]) => (
@@ -117,7 +112,7 @@ const DiabetesPredict = () => {
                 )}
               </button>
             </div>
-          </div>
+          </form>
         </div>
 
         {/* Results Section */}

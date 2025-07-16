@@ -7,6 +7,7 @@ import HeartPredict from './pages/HeartDiseasePredictor';
 import PredictHub from './pages/PredictHub';
 import HomePage from './pages/Home';
 import PneumoniaPredict from './pages/PneumoniaPredict';
+import NotFoundPage from './pages/NotFound';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/predict/disease" element={<DiseasePredict />} />
         <Route path="/predict/heart" element={<HeartPredict />} />
         <Route path="/predict/pneumonia" element={<PneumoniaPredict />} />
+        <Route path="*" element={<NotFoundPage />} />
 
       </Routes>
 

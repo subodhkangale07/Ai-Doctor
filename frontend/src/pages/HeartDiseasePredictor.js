@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Heart, User, Calendar, GraduationCap, Cigarette, Activity, Droplets, Gauge, Scale, TrendingUp, Stethoscope, Brain } from "lucide-react";
+import { predictHeartDisease } from "../api";
 
 const HeartPredict = () => {
   const [formData, setFormData] = useState({
@@ -28,43 +29,31 @@ const HeartPredict = () => {
     });
   };
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    try {
-      // Simulate API call since we don't have access to the actual endpoint
-      await new Promise(resolve => setTimeout(resolve, 2500));
-      
-      // Mock prediction based on risk factors
-      const riskFactors = [
-        formData.age > 60,
-        formData.currentSmoker === 1,
-        formData.cigsPerDay > 10,
-        formData.prevalentHyp === 1,
-        formData.totChol > 240,
-        formData.sysBP > 140,
-        formData.diaBP > 90,
-        formData.BMI > 30,
-        formData.heartRate > 100,
-        formData.glucose > 126
-      ];
-      
-      const riskScore = riskFactors.filter(Boolean).length;
-      const prediction = riskScore > 3 ? "High Risk" : riskScore > 1 ? "Moderate Risk" : "Low Risk";
-      const probability = Math.min(0.9, riskScore * 0.15 + 0.1);
-      
-      setResult({
-        prediction,
-        probability,
-        riskScore,
-        totalFactors: riskFactors.length
-      });
-    } catch (error) {
-      console.error("Error predicting heart disease:", error);
-      setResult({ error: "Error occurred during prediction" });
-    } finally {
-      setLoading(false);
-    }
-  };
+
+// Inside HeartPredict component:
+const handleSubmit = async () => {
+  setLoading(true);
+  try {
+    const predictionResult = await predictHeartDisease(formData);
+
+    // You may receive { prediction: "Heart Disease Detected" } or similar
+    const predictionText = predictionResult.prediction;
+    const riskLevel = predictionText.includes("No") ? "Low Risk" : "High Risk";
+    const probability = predictionText.includes("No") ? 0.2 : 0.8;
+
+    setResult({
+      prediction: riskLevel,
+      probability: probability,
+      riskScore: riskLevel === "High Risk" ? 6 : 1,
+      totalFactors: 10,
+    });
+  } catch (error) {
+    setResult({ error: "API Error: Could not get prediction." });
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const getFieldIcon = (key) => {
     const icons = {

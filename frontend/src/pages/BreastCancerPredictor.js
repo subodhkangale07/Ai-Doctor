@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Brain, Activity, Heart, AlertCircle, CheckCircle, Loader } from 'lucide-react';
+import axios from 'axios';
 
 const BreastCancerPredict = () => {
   const [formData, setFormData] = useState({
@@ -121,13 +122,13 @@ const BreastCancerPredict = () => {
       }, 2000);
 
       // Actual API call (commented out for demo)
-      /*
-      const response = await axios.post('http://localhost:8000/breast_predict', {
+      
+      const response = await axios.post('https://ai-doctor-ho60.onrender.com/breast_predict', {
         ...formData,
         ...Object.fromEntries(Object.entries(formData).map(([k, v]) => [k, parseFloat(v)]))
       });
       setResult(response.data.prediction);
-      */
+      
     } catch (error) {
       setResult("Error in prediction");
       console.error(error);
