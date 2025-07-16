@@ -21,7 +21,7 @@ def read_root():
     return {"message": "Hello, FastAPI"}
 
 app.include_router(breast_predict.router)
-app.include_router(pneumonia_predict.router)
+# app.include_router(pneumonia_predict.router)
 app.include_router(diabetes_predict.router)
 app.include_router(heart_disease.router)
 app.include_router(disease_predict.router)
