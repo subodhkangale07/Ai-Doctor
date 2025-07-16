@@ -1,5 +1,0 @@
-services:
-  - type: web
-    name: ai-doctor-backend
-    env: docker
-    dockerfilePath: ./Dockerfile
