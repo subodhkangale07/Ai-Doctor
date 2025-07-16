@@ -42,3 +42,20 @@ venv/
 ENV/
 env/
 *.egg-info/
+
+
+# Python
+__pycache__/
+*.py[cod]
+*.pkl
+*.h5
+
+# Virtual environment
+venv/
+.env
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
