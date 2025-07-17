@@ -45,7 +45,7 @@ export const predictBreastCancer = async (data) => {
 // };
 // Your API function should look something like this:
 export const predictDiseaseFromSymptoms = async (symptoms) => {
-    const response = await fetch('/api/predict_disease', {
+    const response = await fetch(`${BASE_URL}/predict_disease`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

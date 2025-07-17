@@ -15,60 +15,61 @@ import {
     FileText 
 } from "lucide-react";
 import { SYMPTOMS } from "../data/symptoms";
+import { predictDiseaseFromSymptoms } from "../api";
 
-const predictDiseaseFromSymptoms = async (symptoms) => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
+// const predictDiseaseFromSymptoms = async (symptoms) => {
+//     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    return {
-        predictions: [
-            {
-                disease: "Cervical spondylosis",
-                confidence: 0.08,
-                percentage: 7.95,
-                description: "Cervical spondylosis is a degenerative condition of the cervical spine.",
-                diet: "Anti-inflammatory foods, Omega-3-rich foods, Fruits and vegetables, Whole grains",
-                medication: "Pain relievers, Muscle relaxants, Physical therapy, Neck braces, Corticosteroids",
-                precautions: [
-                    "use heating pad or cold pack",
-                    "exercise",
-                    "take otc pain reliver",
-                    "consult doctor"
-                ],
-                workout: "Include anti-inflammatory foods"
-            },
-            {
-                disease: "Dimorphic hemmorhoids(piles)",
-                confidence: 0.075,
-                percentage: 7.5,
-                description: "Dimorphic hemmorhoids(piles) is a condition characterized by swollen blood vessels in the rectum.",
-                diet: "High-Fiber Diet, Hydration, Warm baths, Stool softeners",
-                medication: "Nitroglycerin, Aspirin, Beta-blockers, Calcium channel blockers, Thrombolytic drugs",
-                precautions: [
-                    "avoid fatty spicy food",
-                    "consume witch hazel",
-                    "warm bath with epsom salt",
-                    "consume alovera juice"
-                ],
-                workout: "Consume high-fiber foods"
-            },
-            {
-                disease: "Gastroenteritis",
-                confidence: 0.057,
-                percentage: 5.66,
-                description: "Gastroenteritis is an inflammation of the stomach and intestines, typically caused by a virus or bacteria.",
-                diet: "Bland Diet, Bananas, Rice, Applesauce, Toast",
-                medication: "Antibiotics, Antiemetic drugs, Antidiarrheal drugs, IV fluids, Probiotics",
-                precautions: [
-                    "stop eating solid food for while",
-                    "try taking small sips of water",
-                    "rest",
-                    "ease back into eating"
-                ],
-                workout: "Stay hydrated"
-            }
-        ]
-    };
-};
+//     return {
+//         predictions: [
+//             {
+//                 disease: "Cervical spondylosis",
+//                 confidence: 0.08,
+//                 percentage: 7.95,
+//                 description: "Cervical spondylosis is a degenerative condition of the cervical spine.",
+//                 diet: "Anti-inflammatory foods, Omega-3-rich foods, Fruits and vegetables, Whole grains",
+//                 medication: "Pain relievers, Muscle relaxants, Physical therapy, Neck braces, Corticosteroids",
+//                 precautions: [
+//                     "use heating pad or cold pack",
+//                     "exercise",
+//                     "take otc pain reliver",
+//                     "consult doctor"
+//                 ],
+//                 workout: "Include anti-inflammatory foods"
+//             },
+//             {
+//                 disease: "Dimorphic hemmorhoids(piles)",
+//                 confidence: 0.075,
+//                 percentage: 7.5,
+//                 description: "Dimorphic hemmorhoids(piles) is a condition characterized by swollen blood vessels in the rectum.",
+//                 diet: "High-Fiber Diet, Hydration, Warm baths, Stool softeners",
+//                 medication: "Nitroglycerin, Aspirin, Beta-blockers, Calcium channel blockers, Thrombolytic drugs",
+//                 precautions: [
+//                     "avoid fatty spicy food",
+//                     "consume witch hazel",
+//                     "warm bath with epsom salt",
+//                     "consume alovera juice"
+//                 ],
+//                 workout: "Consume high-fiber foods"
+//             },
+//             {
+//                 disease: "Gastroenteritis",
+//                 confidence: 0.057,
+//                 percentage: 5.66,
+//                 description: "Gastroenteritis is an inflammation of the stomach and intestines, typically caused by a virus or bacteria.",
+//                 diet: "Bland Diet, Bananas, Rice, Applesauce, Toast",
+//                 medication: "Antibiotics, Antiemetic drugs, Antidiarrheal drugs, IV fluids, Probiotics",
+//                 precautions: [
+//                     "stop eating solid food for while",
+//                     "try taking small sips of water",
+//                     "rest",
+//                     "ease back into eating"
+//                 ],
+//                 workout: "Stay hydrated"
+//             }
+//         ]
+//     };
+// };
 
 const DiseasePredict = () => {
     const [symptomInput, setSymptomInput] = useState("");
