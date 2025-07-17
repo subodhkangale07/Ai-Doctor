@@ -45,19 +45,13 @@ export const predictBreastCancer = async (data) => {
 // };
 // Your API function should look something like this:
 export const predictDiseaseFromSymptoms = async (symptoms) => {
-    const response = await fetch(`${BASE_URL}/predict_disease`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ symptoms: symptoms }),
-    });
-    
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-    
-    return response.json();
+     try {
+    const response = await axios.post(`${BASE_URL}/predict_disease`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Prediction API error:", error);
+    throw error;
+  }
 };
     
   
